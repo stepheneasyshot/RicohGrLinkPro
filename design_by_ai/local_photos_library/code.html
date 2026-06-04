@@ -1,0 +1,375 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GR Link | Professional Companion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+        
+        .masonry-grid {
+            columns: 1;
+            gap: 12px;
+        }
+        @media (min-width: 768px) { .masonry-grid { columns: 2; } }
+        @media (min-width: 1280px) { .masonry-grid { columns: 3; } }
+        @media (min-width: 1536px) { .masonry-grid { columns: 4; } }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 12px;
+        }
+
+        .glass-card {
+            background: rgba(51, 51, 51, 0.85);
+            backdrop-filter: blur(16px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .shutter-btn-active:active {
+            transform: scale(0.92);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#c8c6c6",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-container-highest": "#353535",
+                      "secondary": "#c8c6c5",
+                      "surface-dim": "#131313",
+                      "error-container": "#93000a",
+                      "on-error-container": "#ffdad6",
+                      "surface-tint": "#ffb59c",
+                      "tertiary-fixed": "#e4e2e1",
+                      "on-primary": "#5c1900",
+                      "surface-container": "#20201f",
+                      "on-primary-fixed": "#390c00",
+                      "on-background": "#e5e2e1",
+                      "primary-fixed-dim": "#ffb59c",
+                      "on-secondary": "#303030",
+                      "on-error": "#690005",
+                      "surface": "#131313",
+                      "on-tertiary-container": "#292a2a",
+                      "on-tertiary": "#303030",
+                      "background": "#131313",
+                      "on-surface-variant": "#e3bfb3",
+                      "surface-bright": "#393939",
+                      "inverse-primary": "#ab3600",
+                      "secondary-container": "#474747",
+                      "on-surface": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary-fixed": "#1b1c1c",
+                      "on-secondary-container": "#b6b5b4",
+                      "primary-fixed": "#ffdbcf",
+                      "primary-container": "#fa5c1d",
+                      "inverse-surface": "#e5e2e1",
+                      "secondary-fixed": "#e4e2e1",
+                      "tertiary-fixed-dim": "#c8c6c6",
+                      "on-secondary-fixed-variant": "#474747",
+                      "outline": "#aa897f",
+                      "primary": "#ffb59c",
+                      "on-primary-fixed-variant": "#832700",
+                      "surface-container-low": "#1c1b1b",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "outline-variant": "#5a4138",
+                      "error": "#ffb4ab",
+                      "on-primary-container": "#511500",
+                      "surface-variant": "#353535",
+                      "inverse-on-surface": "#313030",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "tertiary-container": "#919090"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "margin-desktop": "24px",
+                      "sidebar-width": "260px",
+                      "gutter": "12px",
+                      "toolbar-height": "52px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-mono": ["JetBrains Mono"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                      "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-sm": ["17px", {"lineHeight": "22px", "fontWeight": "600"}],
+                      "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-mono": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="w-sidebar-width h-full fixed left-0 top-0 bg-surface-container/70 backdrop-blur-md border-r border-white/10 shadow-md flex flex-col h-full py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">GR Link</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-60">Professional Companion</p>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-white/10 hover:text-on-surface text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings_remote</span>
+<span class="font-body-md text-body-md">Camera Connection</span>
+</a>
+<!-- Active Tab: Local Photos -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface font-semibold border-l-2 border-primary bg-white/5" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span class="font-body-md text-body-md">Local Photos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-white/10 hover:text-on-surface text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="font-body-md text-body-md">Folders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-white/10 hover:text-on-surface text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 mb-6">
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-2.5 rounded-lg hover:opacity-90 transition-opacity active:scale-95 duration-150">
+                Import Photos
+            </button>
+</div>
+<footer class="px-3 border-t border-white/5 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-body-sm text-body-sm">About</span>
+</a>
+</footer>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width h-screen overflow-y-auto relative">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 left-0 right-0 h-toolbar-height bg-surface-container/70 backdrop-blur-md border-b border-white/10 z-40 flex items-center justify-between px-margin-desktop">
+<div class="flex items-center gap-8">
+<nav class="flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-sm text-headline-sm" href="#">Remote</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-headline-sm text-headline-sm" href="#">Library</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-sm text-headline-sm" href="#">Editor</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-on-surface transition-colors">sync</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">battery_full</span>
+<span class="text-xs font-label-mono">84%</span>
+</div>
+<span class="material-symbols-outlined cursor-pointer hover:text-on-surface transition-colors">sd_card</span>
+</div>
+<button class="bg-white/10 border border-white/10 text-on-surface px-4 py-1.5 rounded-full hover:bg-white/20 transition-colors text-sm font-semibold">
+                    Connect Camera
+                </button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-white/10 overflow-hidden cursor-pointer">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVRBdQUs6Sb-gL-kJ4xi1yGlbpWrGF49V4QlxxGfvrBSoeezdaPeXXB9LQfeXnqYOpDrnRt6xU3Jb7PCkYEwSrRsN3w6OOvUOsxWwGxWfPLh1SJ3UPSKFd3s5B0JGETSgTixL59jUI3qg4UuaFoM0AbT3vOG-Ias4GGJI6CScOS3yDIjm8_Pr6438rtAWnR-VPxBoay8-kYBEdXdVIwuwbZmYYvDYVi55Ft3xqWzWrq-c8vN0iZm2aHmhSXVuqZ43Gh8WSmUnQu5w">
+</div>
+</div>
+</header>
+<!-- Gallery Header -->
+<section class="px-margin-desktop py-8 flex items-end justify-between">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-1">Street Chronicles</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Tokyo Shinjuku Session • Oct 2023</p>
+</div>
+<div class="flex gap-2">
+<div class="flex bg-surface-container-high rounded-lg p-1">
+<button class="px-3 py-1 bg-surface-variant text-on-surface rounded-md text-sm font-medium">Grid</button>
+<button class="px-3 py-1 text-on-surface-variant hover:text-on-surface text-sm font-medium">List</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</section>
+<!-- Masonry Gallery -->
+<div class="px-margin-desktop pb-20">
+<div class="masonry-grid">
+<!-- Photo 1 -->
+<div class="masonry-item relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-auto transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic black and white street photograph of a rain-slicked Tokyo intersection at night. Glowing neon signs reflect beautifully off the wet asphalt while a lone figure with a transparent umbrella walks across the crosswalk. The lighting is moody and high-contrast, perfectly capturing the gritty yet refined aesthetic of Ricoh GR street photography with deep shadows and sharp highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsvA5TzxcfiJOo9-0_0aSndrjQz3uGjzzsHV-XPtA0-R7pu2wYLdoPDOeWjp3M0drvJg2EMGKts8L6sZmGQ6koAyGrplyv5AbapndwurUjaqwn7s0KUQ1z1CEajJ_69_bZJ1ljMh9M7OEDhChwH3Qv7DPlmMcX_1sBeq1Xhd6J7_TQ93pMY2gcK4jYkCuErVIesXotKpuoLvO4CSWGlXdIyzF0g6-hhONpH8VIUxItvSI6UUCKGg2cDikrSC5Ghksrga4mwd5oOHQ">
+<div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex items-center justify-between text-white font-label-mono text-label-mono">
+<span>ISO 800 • f/2.8 • 1/125s</span>
+<span class="opacity-60">28mm</span>
+</div>
+</div>
+</div>
+<!-- Photo 2 -->
+<div class="masonry-item relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-auto transition-transform duration-700 group-hover:scale-105" data-alt="A minimalist architectural shot of a brutalist concrete building against a pale, overcast sky. The composition is strictly geometric with strong diagonal lines and dramatic shadows. The texture of the concrete is tactile and detailed, rendered in a sophisticated desaturated color palette of cool grays and soft whites, evoking a professional, high-end photography portfolio style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKRh9cKEowY6LMx-5LD1O8ttMk_--LkTiI72Wh5E9T_ujmaf02rHMM3MU1NZSvM0hrhCwwRXoL4QhwlL1-3MrhsODsQi7fW0Y-Wyrl59VTsnzaao375cVvjy8_BnlPR7riE0Zuzx6M8-IeeS4e9leUaJIJxRbkQ4aNCic6BVRkNfIk1h8Ssiim8ZbcU9AcDYWwva0kD5M-ltqdvZGE5eo75pJ2MufjXuHEthSsAocSGtqpHKJcU2_ojjzayMuZ-8B_36Gi2HboAlU">
+<div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex items-center justify-between text-white font-label-mono text-label-mono">
+<span>ISO 100 • f/5.6 • 1/500s</span>
+<span class="opacity-60">40mm</span>
+</div>
+</div>
+</div>
+<!-- Photo 3 -->
+<div class="masonry-item relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-auto transition-transform duration-700 group-hover:scale-105" data-alt="An atmospheric candid shot of a traditional Japanese noodle bar in Shinjuku Golden Gai. Warm orange light spills from the interior onto the narrow alleyway, creating a vibrant glow against the dark surroundings. The scene is rich with detail, from the steam rising from the pots to the weathered wood of the counter, capturing a gritty, authentic urban mood with a premium magnesium-alloy camera feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdURFUATfWG4Y0ShAfspNs9RZAglgteVCUknM4WGLg1kmksfrTiAwWcQdEa404aBzgcqm3bPgax1nX6xKDmXDGnJNS-cqYrUXFjQaTcTr0Fd4ptWDnLPZp9Q_kfKNB3_1JVtDpRaa-bkrO2mNcxaorSSO7WLVN3GvpcDotbdIShHCj9TVJEGy5v3XdNDh0GRekVW9m1PA5Vz4V8PWHh0oWPOS8zTf5Mdsz9MrIhjL92oZ358Y2HTlL09_G0KQ0HgLgedL4zVhNe1o">
+<div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex items-center justify-between text-white font-label-mono text-label-mono">
+<span>ISO 3200 • f/2.8 • 1/60s</span>
+<span class="opacity-60">28mm</span>
+</div>
+</div>
+</div>
+<!-- Photo 4 -->
+<div class="masonry-item relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-auto transition-transform duration-700 group-hover:scale-105" data-alt="A high-contrast street scene featuring a sharp shadow profile of a pedestrian against a sun-drenched white wall. The minimalist composition utilizes negative space to create a powerful visual impact. The lighting is harsh midday sun, creating deep, pitch-black shadows and brilliant highlights, typical of the high-contrast B&amp;W film simulations found on professional street cameras." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQe8czuafL0CFCVaReV4XK5Bn9TrSaKc8svaPvKVgm0iCCo0b6f11pCENVIvbb8xtbWk6nJvcOkFRRi60A4SIRSwewsepIN81TyDipEWaBt8L-AptyQuQ7r0OFr_0uqS5LkLWUZusvw5LDBDdBkROMN212dGloJ1VdeEpqj0EsNNghq66ouQveWVoSxAD-rYcQOGe1ehlKhVAC_MvS2Eep7GVEfMyqfbtsDhq7WxOUwFBxQFGCrreXRSGUJdqms-Zxzpqg30WKRAc">
+<div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex items-center justify-between text-white font-label-mono text-label-mono">
+<span>ISO 200 • f/8.0 • 1/1000s</span>
+<span class="opacity-60">28mm</span>
+</div>
+</div>
+</div>
+<!-- Photo 5 -->
+<div class="masonry-item relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-auto transition-transform duration-700 group-hover:scale-105" data-alt="A close-up macro shot of raindrops on a glass surface, with blurred city lights in the background creating a beautiful bokeh effect. The focus is razor-sharp on the foreground water droplets, while the background dissolves into soft circles of amber and teal light. The mood is contemplative and artistic, emphasizing precision and optical quality in a professional photography context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyMTWY5l1M926L1Yrxc5QUkG2Rn6qTM5AXWkDPL-uGTa9KefTKtFSgEo7UMKGkO53sBsGXL4NsQKWyYf4ELTLk2S9YVQT0viRGtiHvG2VNCf5x-gSgUwZmbJ67XrcfgNa2Iep0G23dnPiaRbJbgX5Of-YfA1csbRqs9-D3hj1863XPyBcpfGreDFYcehLgddq2R2vk_pd4vCYnD6RLSCqL76Su6Ko53yeto4q1op4Ly4nMKgWeypm1vSbntLeDXMarqhZ9wSmRxpM">
+<div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex items-center justify-between text-white font-label-mono text-label-mono">
+<span>ISO 400 • f/2.8 • 1/100s</span>
+<span class="opacity-60">28mm</span>
+</div>
+</div>
+</div>
+<!-- Photo 6 -->
+<div class="masonry-item relative group overflow-hidden cursor-zoom-in">
+<img class="w-full h-auto transition-transform duration-700 group-hover:scale-105" data-alt="A dynamic street photograph capturing motion blur in a crowded Tokyo subway station. The fast-moving train is a streak of light and silver, while commuters stand in sharp contrast. The color palette is modern and industrial, with cool blues and metallic grays punctuated by the signature orange of the GR Link brand, creating a sense of speed and urban energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM6cgMOSfNGUiOshcG3m83By5Tw2IPLs-kYrdq-FP7M3N3w3eSSJO1wrnHB4fxalpjp8saiVqH18RbHcocJRHMJIdKFFXUkcdiTP_yFf0pXvLYjWV_xkqD2KBM9XwqNX3ssT-HiFvqqLCO1hOBFJjBQK7s-G2U_hftxs-I2U_oiA4vdgCR-rtsaPzP6wisfJI5JLx-6emSYa0ZWTW9KidrxDhgaf6PufjzkgnRh2kOAtsraOSP2mFUqqqNeawaL751hto3MNqFIFg">
+<div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<div class="flex items-center justify-between text-white font-label-mono text-label-mono">
+<span>ISO 1600 • f/4.0 • 1/15s</span>
+<span class="opacity-60">28mm</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Remote Control Panel (Contextual) -->
+<div class="fixed bottom-8 right-8 z-50">
+<div class="glass-card rounded-full p-2 flex items-center gap-4 shadow-2xl border border-white/20">
+<div class="flex items-center gap-1 px-4 border-r border-white/10">
+<span class="material-symbols-outlined text-primary text-xl">camera_alt</span>
+<span class="font-label-mono text-xs text-on-surface">CONNECTED</span>
+</div>
+<div class="flex items-center gap-3 pr-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">settings_input_component</span>
+</button>
+<button class="group shutter-btn-active relative w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-150">
+<div class="absolute inset-0 border-2 border-primary/30 rounded-full scale-110"></div>
+<div class="w-11 h-11 bg-primary-container rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">fiber_manual_record</span>
+</div>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">auto_fix_high</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Photo Detail Overlay (Hidden by Default) -->
+<div class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-8" id="detail-modal">
+<button class="absolute top-8 right-8 text-on-surface hover:text-primary transition-colors" onclick="closeModal()">
+<span class="material-symbols-outlined text-4xl">close</span>
+</button>
+<div class="max-w-6xl w-full flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<img class="max-h-[819px] w-auto mx-auto shadow-2xl rounded-sm" id="modal-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=">
+</div>
+<div class="w-full md:w-80 glass-card p-6 rounded-xl space-y-6">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Metadata</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Aperture</p>
+<p class="font-label-mono text-primary">f/2.8</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Shutter</p>
+<p class="font-label-mono text-primary">1/125s</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">ISO</p>
+<p class="font-label-mono text-primary">800</p>
+</div>
+<div class="space-y-1">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Focal</p>
+<p class="font-label-mono text-primary">18.3mm</p>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg hover:opacity-90 transition-opacity">Download Full RAW</button>
+<button class="w-full bg-white/5 border border-white/10 text-on-surface py-3 rounded-lg hover:bg-white/10 transition-colors">Add to Favorites</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+        }
+
+        document.querySelectorAll('.masonry-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const modal = document.getElementById('detail-modal');
+                const modalImg = document.getElementById('modal-img');
+                
+                modalImg.src = img.src;
+                modal.style.opacity = '1';
+                modal.style.pointerEvents = 'auto';
+            });
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body></html>

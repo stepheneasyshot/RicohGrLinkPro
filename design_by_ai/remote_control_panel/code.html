@@ -1,0 +1,389 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GR Link | Remote Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(44, 44, 44, 0.7);
+            backdrop-filter: blur(30px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .shutter-active:active {
+            transform: scale(0.92);
+        }
+        .slider-vertical {
+            appearance: none;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            writing-mode: bt-lr; /* Bottom to top */
+            appearance: slider-vertical;
+        }
+        /* Custom scrollbar for film simulation list */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#c8c6c6",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-highest": "#353535",
+                        "secondary": "#c8c6c5",
+                        "surface-dim": "#131313",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#ffb59c",
+                        "tertiary-fixed": "#e4e2e1",
+                        "on-primary": "#5c1900",
+                        "surface-container": "#20201f",
+                        "on-primary-fixed": "#390c00",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb59c",
+                        "on-secondary": "#303030",
+                        "on-error": "#690005",
+                        "surface": "#131313",
+                        "on-tertiary-container": "#292a2a",
+                        "on-tertiary": "#303030",
+                        "background": "#131313",
+                        "on-surface-variant": "#e3bfb3",
+                        "surface-bright": "#393939",
+                        "inverse-primary": "#ab3600",
+                        "secondary-container": "#474747",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-secondary-container": "#b6b5b4",
+                        "primary-fixed": "#ffdbcf",
+                        "primary-container": "#fa5c1d",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#e4e2e1",
+                        "tertiary-fixed-dim": "#c8c6c6",
+                        "on-secondary-fixed-variant": "#474747",
+                        "outline": "#aa897f",
+                        "primary": "#ffb59c",
+                        "on-primary-fixed-variant": "#832700",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "outline-variant": "#5a4138",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#511500",
+                        "surface-variant": "#353535",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "tertiary-container": "#919090",
+                        "ricoh-orange": "#E8500E"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "24px",
+                        "sidebar-width": "260px",
+                        "gutter": "12px",
+                        "toolbar-height": "52px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-desktop": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-sm": ["17px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-mono": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen select-none">
+<!-- Sidebar: Managed by Shared Components Logic -->
+<aside class="w-sidebar-width h-full fixed left-0 top-0 bg-surface-container/70 backdrop-blur-md border-r border-white/10 shadow-md flex flex-col h-full py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">GR Link</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-60">Professional Companion</p>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-on-surface font-semibold border-l-2 border-primary bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">settings_remote</span>
+<span class="font-body-md text-body-md">Camera Connection</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">photo_library</span>
+<span class="font-body-md text-body-md">Local Photos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="font-body-md text-body-md">Folders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 py-4">
+<button class="w-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm py-3 rounded-xl hover:opacity-90 active:scale-95 transition-all">
+                Import Photos
+            </button>
+</div>
+<div class="px-3 pt-4 border-t border-white/5">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:text-on-surface transition-colors mb-1" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-body-sm text-body-sm">About</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-sidebar-width right-0 h-toolbar-height z-40 bg-surface-container/70 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-margin-desktop shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-headline-sm text-headline-sm" href="#">Remote</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-sm text-headline-sm" href="#">Library</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-sm text-headline-sm" href="#">Editor</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-3 px-4 py-1.5 bg-white/5 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]">sync</span>
+<span class="material-symbols-outlined text-green-400 text-[18px]">battery_full</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">sd_card</span>
+</div>
+<button class="bg-primary text-on-primary font-headline-sm text-headline-sm px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity">
+                Connect Camera
+            </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="User Avatar" data-alt="A professional photographer's profile portrait, captured with soft side-lighting against a dark studio background. The style is minimalist and high-end, featuring subtle grain and deep contrast consistent with a luxury photography brand. The person has a focused, creative expression, wearing dark apparel that blends into the shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASg_MgTJOuyqi47-_tzJDVOBWsWU-bMxfGqwcc7EC4TsQF38o49lZtSxuwgR13RoZ5zFt2NVhE6I4QGPMZmc7w53f_QhaRryBJJNeY1z5hYdP1Sc5TldijNDTq9Qp0FhUFBFht5ldKTzErXEew_9Krg0CyhmBjByh5YAEtetcmqSJ_-0KM1yE7CMf53lqheJ7nwnMCf-lgnxZnaBC-bYSL2eQUjuXkFCAKnuwfVZ3wTody9SD2NJCOwvOe6rrj0dKHzSUJQz0fUgs">
+</div>
+</div>
+</header>
+<!-- Main Content: Remote Interface -->
+<main class="ml-sidebar-width mt-toolbar-height h-[calc(100vh-52px)] flex overflow-hidden">
+<!-- Center: Live View Feed -->
+<section class="flex-1 relative bg-surface-dim flex items-center justify-center overflow-hidden">
+<div class="w-full h-full relative group">
+<img alt="Live View Stream" class="w-full h-full object-cover opacity-90" data-alt="A breathtaking cinematic landscape of a misty mountain range during blue hour, captured with a professional Ricoh GR wide-angle lens. The composition features sharp focus on foreground rock textures and a soft, hazy atmospheric perspective on distant peaks. The color palette is dominated by deep blues, cool teals, and subtle orange glows on the horizon, embodying a high-contrast, professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChv2ff5uGgDyLYv6U3J_5FbLRF5V7ACDYm1r0BU4JYBFLakloS9Iusjpraz_K_frjDy2cACqg8jM5HKzC-ogmWsF38k56_aJUNRi2z9cq5jBvS8mV7Tr3uL12MExzgIuRCldSiqUql27VwmCFx9fMrAmuaFiQdVHngviyy2ciCN--aY9tVesYfv0fCkIIWYj4RUQ5ZR2ok8qvzrL-A9YQxufsYaoUi5ibuzVvIk0Y1vTFduhnrqPHFauLykNneleLhOeHycAdSuYs">
+<!-- Camera Overlay Elements -->
+<div class="absolute inset-0 pointer-events-none p-6 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="bg-black/40 backdrop-blur-md px-3 py-1 rounded text-primary font-label-mono flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            LIVE 4K
+                        </div>
+<div class="flex gap-2">
+<div class="bg-black/40 backdrop-blur-md px-2 py-1 rounded font-label-mono text-on-surface">RAW+L</div>
+<div class="bg-black/40 backdrop-blur-md px-2 py-1 rounded font-label-mono text-on-surface">AF-S</div>
+</div>
+</div>
+<!-- Rule of Thirds Grid -->
+<div class="absolute inset-0 grid grid-cols-3 grid-rows-3 opacity-20 pointer-events-none">
+<div class="border-r border-b border-white"></div>
+<div class="border-r border-b border-white"></div>
+<div class="border-b border-white"></div>
+<div class="border-r border-b border-white"></div>
+<div class="border-r border-b border-white"></div>
+<div class="border-b border-white"></div>
+<div class="border-r border-white"></div>
+<div class="border-r border-white"></div>
+<div></div>
+</div>
+<div class="flex justify-center">
+<div class="bg-black/40 backdrop-blur-md px-4 py-2 rounded-full flex gap-6 font-label-mono text-on-surface text-sm border border-white/10">
+<div class="flex flex-col items-center"><span class="text-primary">F</span><span>2.8</span></div>
+<div class="flex flex-col items-center"><span class="text-primary">SS</span><span>1/250</span></div>
+<div class="flex flex-col items-center"><span class="text-primary">ISO</span><span id="iso-val">400</span></div>
+<div class="flex flex-col items-center"><span class="text-primary">EV</span><span>-0.3</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Control Panel -->
+<aside class="w-[340px] h-full glass-panel flex flex-col border-l border-white/10">
+<div class="p-6 flex-1 overflow-y-auto hide-scrollbar space-y-8">
+<!-- Exposure & ISO Vertical Sliders -->
+<div class="grid grid-cols-2 gap-6 h-64">
+<div class="flex flex-col items-center gap-4">
+<span class="font-label-mono text-on-surface-variant">EXPOSURE</span>
+<div class="flex-1 relative flex justify-center w-full">
+<div class="absolute inset-y-0 w-[1px] bg-white/10"></div>
+<!-- Ticks -->
+<div class="absolute inset-y-0 flex flex-col justify-between py-2 -ml-8">
+<span class="text-[10px] text-on-surface-variant/40 font-label-mono">+3</span>
+<span class="text-[10px] text-on-surface-variant/40 font-label-mono">0</span>
+<span class="text-[10px] text-on-surface-variant/40 font-label-mono">-3</span>
+</div>
+<input class="slider-vertical h-full cursor-pointer accent-primary" max="3" min="-3" step="0.3" type="range" value="-0.3">
+</div>
+<span class="font-label-mono text-primary">-0.3</span>
+</div>
+<div class="flex flex-col items-center gap-4">
+<span class="font-label-mono text-on-surface-variant">ISO</span>
+<div class="flex-1 relative flex justify-center w-full">
+<div class="absolute inset-y-0 w-[1px] bg-white/10"></div>
+<div class="absolute inset-y-0 flex flex-col justify-between py-2 -ml-12">
+<span class="text-[10px] text-on-surface-variant/40 font-label-mono">12.8k</span>
+<span class="text-[10px] text-on-surface-variant/40 font-label-mono">1600</span>
+<span class="text-[10px] text-on-surface-variant/40 font-label-mono">100</span>
+</div>
+<input class="slider-vertical h-full cursor-pointer accent-primary" id="iso-slider" max="12800" min="100" step="100" type="range" value="400">
+</div>
+<span class="font-label-mono text-primary" id="iso-display">400</span>
+</div>
+</div>
+<!-- Film Simulation Selector -->
+<div class="space-y-4">
+<h3 class="font-label-mono text-on-surface-variant border-b border-white/5 pb-2">FILM SIMULATION</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-primary/20 border border-primary text-on-surface p-3 rounded text-left flex flex-col gap-1 transition-all">
+<span class="font-headline-sm text-headline-sm">Positive Film</span>
+<span class="text-[10px] opacity-60 font-label-mono uppercase">Vibrant &amp; Classic</span>
+</button>
+<button class="bg-white/5 border border-white/10 text-on-surface-variant p-3 rounded text-left flex flex-col gap-1 hover:bg-white/10 transition-all">
+<span class="font-headline-sm text-headline-sm">Monochrome</span>
+<span class="text-[10px] opacity-60 font-label-mono uppercase">Hard B&amp;W</span>
+</button>
+<button class="bg-white/5 border border-white/10 text-on-surface-variant p-3 rounded text-left flex flex-col gap-1 hover:bg-white/10 transition-all">
+<span class="font-headline-sm text-headline-sm">Negative Std</span>
+<span class="text-[10px] opacity-60 font-label-mono uppercase">Soft Tones</span>
+</button>
+<button class="bg-white/5 border border-white/10 text-on-surface-variant p-3 rounded text-left flex flex-col gap-1 hover:bg-white/10 transition-all">
+<span class="font-headline-sm text-headline-sm">High Contrast</span>
+<span class="text-[10px] opacity-60 font-label-mono uppercase">Street Style</span>
+</button>
+</div>
+</div>
+<!-- White Balance / Focus Mode -->
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-mono text-[10px] text-on-surface-variant">WB</label>
+<div class="flex items-center justify-between bg-white/5 p-2 rounded border border-white/10 cursor-pointer">
+<span class="text-sm">Auto</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-mono text-[10px] text-on-surface-variant">FOCUS</label>
+<div class="flex items-center justify-between bg-white/5 p-2 rounded border border-white/10 cursor-pointer">
+<span class="text-sm">Auto-Area</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Shutter Control Area -->
+<div class="p-8 glass-panel border-t border-white/10 flex flex-col items-center justify-center gap-6">
+<!-- Ricoh Shutter Button -->
+<div class="relative group">
+<!-- Outer Ring (Focus Half-Press Metaphor) -->
+<div class="w-24 h-24 rounded-full border-2 border-ricoh-orange/30 absolute -inset-2 scale-100 group-hover:scale-105 transition-transform duration-500"></div>
+<!-- Main Button -->
+<button class="shutter-active w-20 h-20 bg-ricoh-orange rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(232,80,14,0.4)] transition-all relative z-10 active:shadow-none" id="shutter-btn">
+<span class="material-symbols-outlined text-white text-4xl" data-weight="fill">photo_camera</span>
+</button>
+</div>
+<div class="flex gap-8">
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">videocam</span>
+</div>
+<span class="text-[10px] font-label-mono text-on-surface-variant">REC</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">timer</span>
+</div>
+<span class="text-[10px] font-label-mono text-on-surface-variant">TIMER</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">burst_mode</span>
+</div>
+<span class="text-[10px] font-label-mono text-on-surface-variant">BURST</span>
+</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- Haptic Interaction Overlay (Flash) -->
+<div class="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75 z-[100]" id="flash-overlay"></div>
+<script>
+        // Micro-interactions for the shutter button
+        const shutterBtn = document.getElementById('shutter-btn');
+        const flashOverlay = document.getElementById('flash-overlay');
+        const isoSlider = document.getElementById('iso-slider');
+        const isoDisplay = document.getElementById('iso-display');
+        const isoValOverlay = document.getElementById('iso-val');
+
+        shutterBtn.addEventListener('click', () => {
+            // Simulate shutter flash
+            flashOverlay.style.opacity = '0.8';
+            setTimeout(() => {
+                flashOverlay.style.opacity = '0';
+            }, 50);
+            
+            // Subtle button animation
+            shutterBtn.classList.add('scale-90');
+            setTimeout(() => shutterBtn.classList.remove('scale-90'), 100);
+        });
+
+        // Real-time slider update
+        isoSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            isoDisplay.textContent = val;
+            isoValOverlay.textContent = val;
+        });
+
+        // Add focus effect simulation
+        shutterBtn.addEventListener('mousedown', () => {
+            // Mimic half-press focus state visual
+            document.querySelector('.border-ricoh-orange\\/30').classList.add('border-ricoh-orange', 'scale-95');
+        });
+        shutterBtn.addEventListener('mouseup', () => {
+            document.querySelector('.border-ricoh-orange\\/30').classList.remove('border-ricoh-orange', 'scale-95');
+        });
+
+        // Glassmorphic navigation hover logic
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('nav a').forEach(l => {
+                    l.className = 'flex items-center gap-3 px-3 py-2.5 rounded text-on-surface-variant hover:bg-white/10 hover:text-on-surface transition-colors';
+                    const span = l.querySelector('.material-symbols-outlined');
+                });
+                link.className = 'flex items-center gap-3 px-3 py-2.5 rounded text-on-surface font-semibold border-l-2 border-primary bg-white/5 transition-colors';
+            });
+        });
+    </script>
+</body></html>
